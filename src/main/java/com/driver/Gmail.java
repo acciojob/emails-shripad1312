@@ -32,8 +32,6 @@ public class Gmail extends Email {
      }else{
          inbox.add(newmail);
      }
-
-
     }
 
     public void deleteMail(String message){

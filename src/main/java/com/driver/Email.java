@@ -29,35 +29,43 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
-        int ct=0;
-        boolean isupper=false;
-        boolean islower=false;
-        boolean isnum=false;
-        boolean isspecial=false;
-
-            for (int i = 0; i < newPassword.length(); i++) {
-                int ch=newPassword.charAt(i);
-
-                //this is for avoiding whitespaces
-
-                if(ch>=65&&ch<=90){
-                  isupper=true;
+        if(newPassword.length()>=8){
+            int upperCaseCount=0;
+            for(int i=0;i<newPassword.length();i++){
+                if(newPassword.charAt(i)>='A' && newPassword.charAt(i)<='Z'){
+                    upperCaseCount++;
                 }
-                if(ch>=97&&ch<=122){
-                    islower=true;
-                }
-                if(ch>=48&&ch<=57){
-                    isnum=true;
-                }
-                if((ch>=32&&ch<=47)||(ch>=58&&ch<=64)||(ch>=91&&ch<=96)||(ch>=123&&ch<=126)){
-                    isspecial=true;
-                }
-                ct++;
             }
-
-            if(islower==true&&isupper==true&&isnum==true&&isspecial==true&&ct==8){
-                setPassword(newPassword);
+            if(upperCaseCount>=1){
+                int lowerCaseCount=0;
+                for(int i=0;i<newPassword.length();i++){
+                    if(newPassword.charAt(i)>='a' && newPassword.charAt(i)<='z'){
+                        lowerCaseCount++;
+                    }
+                }
+                if(lowerCaseCount>=1){
+                    int digitCount=0;
+                    for(int i=0;i<newPassword.length();i++){
+                        if(newPassword.charAt(i)>='0' && newPassword.charAt(i)<='9'){
+                            digitCount++;
+                        }
+                    }
+                    if(digitCount>=1){
+                        int specialCharacter=0;
+                        for(int i=0;i<newPassword.length();i++){
+                            if(!(newPassword.charAt(i)>='0' && newPassword.charAt(i)<='9') &&!(newPassword.charAt(i)>='a' && newPassword.charAt(i)<='z') && !(newPassword.charAt(i)>='A' && newPassword.charAt(i)<='Z')){
+                                specialCharacter++;
+                            }
+                        }
+                        if(specialCharacter>=1){
+                            if(oldPassword.equals(password)){
+                                password=newPassword;
+                            }
+                        }
+                    }
+                }
             }
+        }
 
     }
 }
