@@ -34,19 +34,12 @@ public class Email {
         boolean islower=false;
         boolean isnum=false;
         boolean isspecial=false;
-        if(oldPassword.equals(newPassword)){
+
             for (int i = 0; i < newPassword.length(); i++) {
                 int ch=newPassword.charAt(i);
 
                 //this is for avoiding whitespaces
-                if(ch==32){
-                  //  continue;
-                    isupper=false;
-                    islower=false;
-                    isnum=false;
-                    isspecial=false;
-                    return;
-                }
+
                 if(ch>=65&&ch<=90){
                   isupper=true;
                 }
@@ -65,6 +58,6 @@ public class Email {
             if(islower==true&&isupper==true&&isnum==true&&isspecial==true&&ct==8){
                 setPassword(newPassword);
             }
-        }
+
     }
 }
